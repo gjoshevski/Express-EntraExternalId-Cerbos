@@ -35,9 +35,9 @@ In this sample we offer two options to create this configuration, by using Power
 
 Find more information about the script [here](./AppCreationScripts/AppCreationScripts.md).
 
-- After running the script don't forget to follow the instructions from the script output. You wll have to create user flows o allow users to sign up for the application.
+- After running the script don't forget to follow the instructions from the script output. You wll have to [create user flows](https://learn.microsoft.com/en-us/entra/external-id/customers/how-to-user-flow-sign-up-sign-in-customers) to allow users to sign up in the [application](https://learn.microsoft.com/en-us/entra/external-id/customers/how-to-user-flow-add-application).
 
-**Option B - Step-by-step guide**
+**Option B - Step-by-step UI guide**
 
 The full guide can be found [here](./EntraStepByStepGuide.md).
 

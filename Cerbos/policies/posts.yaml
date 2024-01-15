@@ -3,20 +3,21 @@ resourcePolicy:
   version: default
   resource: posts
   rules:
-  # Admins can do all actions
-  - actions: ["*"]
+  - actions: ["read", "create"]
     effect: EFFECT_ALLOW
     roles:
       - admin
-    condition:
-      match:
-        expr: request.resource.attr.organizationId == request.principal.attr.organizationId
+      - user
 
-  # Users in the Sales department can read and create contacts
-  - actions: ["read", "create"]
+  - actions: ["update", "delete"]
+    effect: EFFECT_ALLOW
+    roles:
+      - admin
+
+  - actions: ["update", "delete"]
     effect: EFFECT_ALLOW
     roles:
       - user
     condition:
       match:
-        expr: request.principal.attr.department == "Sales"
+        expr: request.principal.attr.oid == request.resource.attr.authorId
