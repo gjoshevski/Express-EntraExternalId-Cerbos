@@ -1,4 +1,4 @@
-import msal from '@azure/msal-node';
+import {CryptoProvider, ConfidentialClientApplication} from '@azure/msal-node';
 import axios from 'axios';
 
 
@@ -11,11 +11,11 @@ export class AuthProvider {
 
     constructor(config) {
         this.config = config;
-        this.cryptoProvider = new msal.CryptoProvider();
+        this.cryptoProvider = new CryptoProvider();
     }
 
     getMsalInstance(msalConfig) {
-        return new msal.ConfidentialClientApplication(msalConfig);
+        return new ConfidentialClientApplication(msalConfig);
     }
 
     async login(req, res, next, options = {}) {

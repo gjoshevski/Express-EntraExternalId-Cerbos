@@ -14,17 +14,22 @@
             <td>{{this.title}}</td>
             <td>{{this.content}}</td>
             <td>{{#if this.published}}
-                <form style="all: unset;" action="/posts/{{this._id}}/unpublish" method="POST">
+                <form style="all: unset;" action="/posts/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" value="false" name="published">
                     <input type="submit" value="Unpublish" />
                 </form>
                 {{else}}
-                <form style="all: unset;" action="/posts/{{this._id}}/publish" method="POST">
+                <form style="all: unset;" action="/posts/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" value="true" name="published">
                     <input type="submit" value="Publish" />
                 </form>
                 {{/if}}      
             </td>
             <td>
-                <form style="all: unset;" action="/posts/{{this._id}}/delete" method="POST">
+                <form style="all: unset;" action="/posts/{{this.id}}?_method=DELETE" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
                     <input type="submit" value="Delete" />
                 </form>
             </td>

@@ -1,23 +1,28 @@
 apiVersion: api.cerbos.dev/v1
 resourcePolicy:
   version: default
-  resource: posts
+  resource: post
   rules:
-  - actions: ["read", "create"]
+  - actions: ["read"]
     effect: EFFECT_ALLOW
     roles:
-      - admin
-      - user
-
+      - Posts.Admin
+      - Posts.User
+  - actions: ["create"]
+    effect: EFFECT_ALLOW
+    roles:
+      - Posts.User
   - actions: ["update", "delete"]
     effect: EFFECT_ALLOW
     roles:
-      - admin
-
+      - Posts.Admin
   - actions: ["update", "delete"]
     effect: EFFECT_ALLOW
     roles:
-      - user
+      - Posts.User
     condition:
       match:
         expr: request.principal.attr.oid == request.resource.attr.authorId
+
+# TODO: Derived roles
+# TODO: Multi-tenancy

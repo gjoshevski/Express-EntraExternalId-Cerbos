@@ -10,7 +10,9 @@
   "author": "Microsoft",
   "license": "MIT",
   "dependencies": {
-    "@azure/msal-node": "^1.17.2",
+    "@azure/msal-node": "^2.6.3",
+    "@cerbos/grpc": "^0.14.0",
+    "@prisma/client": "^5.7.0",
     "axios": "^1.0.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
@@ -18,10 +20,9 @@
     "express-session": "^1.17.3",
     "hbs": "^4.2.0",
     "http-errors": "^2.0.0",
+    "method-override": "^3.0.0",
     "morgan": "^1.10.0",
-    "prisma": "^5.7.0",
-    "@prisma/client": "^5.7.0",
-    "@cerbos/grpc": "^0.14.0"
+    "prisma": "^5.7.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.0"
