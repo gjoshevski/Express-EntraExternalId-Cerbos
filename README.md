@@ -5,9 +5,17 @@ This sample demonstrates a Node.js & Express web app that lets users authenticat
 ## Overview
 ![architecture](media/entra-cerbos.jpg)
 
-This project includes a web application that allows users to perform CRUD operations on posts. The authorization logic is implemented using Cerbos policies, which define the actions that users can perform on specific resources. For example, only the author of a post can edit or delete it.
+This project includes a web application that allows users to perform CRUD operations on posts. The authorization logic is implemented using Cerbos policies, which define the actions that users can perform on specific resources. The policies can be found in *Cerbos/policies/post.yaml* . Below you can see the table of permitted actions by role.
+
+| Role      | Create  |   Edit  | Delete  |   View              |
+| --------- | ------- | ------- | ------- | -------             |
+| **User**  |    Y    |  Owner  |  Owner  | Owner All Published |
+| **Admin** |    N    |    Y    |    N    |    All              |
+
 
 To authenticate users and retrieve their identity information, such as name and roles, the web application utilizes Microsoft Entra External ID. The implementation of the web application is based on the [A Node.js & Express web app authenticating users against Azure AD for Customers with MSAL Node](https://github.com/Azure-Samples/ms-identity-ciam-javascript-tutorial/tree/main/1-Authentication/5-sign-in-express) tutorial.
+
+
 
 ## Prerequisites
 
@@ -119,10 +127,3 @@ To test the sample Node.js web app, follow these steps:
 1. Select the **Assign** button to finish the assignment of users and groups to the app.
 
 Confirm that the users and groups you added appear in the **Users and groups** list.
-
-## How it works
-
-| Role      | Create  |   Edit  | Delete  |   View              |
-| --------- | ------- | ------- | ------- | -------             |
-| **User**  |    Y    |  Owner  |  Owner  | Owner All Published |
-| **Admin** |    N    |    Y    |    N    |    All              |
