@@ -100,7 +100,7 @@ To test the sample Node.js web app, follow these steps:
 
 4. On the sign-in page, enter your email address, click **Next**, enter your password, and then click **Sign in**. If you don't have an account, you can click on the **No account? Create one** link to start the sign-up flow.
 
-5. If you choose the sign-up option, you will need to provide your email, one-time passcode, new password, and other account details to complete the sign-up flow. You will see a page similar to the screenshot below. The same page will be displayed if you choose the sign-in option.
+5. If you choose the sign-up option, you will need to provide your email, one-time passcode, new password, and other account details to complete the sign-up flow. 
 
 6. To sign out of the web app, click on **Sign out**. You can also click on **View ID token claims** to view the ID token claims returned by Microsoft Entra.
 
