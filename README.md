@@ -114,6 +114,8 @@ To test the sample Node.js web app, follow these steps:
 
 ## Assign Admin role
 
+If you wan't to switch your role and get admin permissions, follow this steps:
+
 1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com) as at least a [Cloud Application Administrator](~/identity/role-based-access-control/permissions-reference.md#cloud-application-administrator). 
 1. Browse to **Identity** > **Applications** > **Enterprise applications**.
 1. Select **All applications** to view a list of all your applications, and select the application that you created (such as *ciam-client-app*). If your application doesn't appear in the list, use the filters at the top of the **All applications** list to restrict the list, or scroll down the list to locate your application.
@@ -127,3 +129,7 @@ To test the sample Node.js web app, follow these steps:
 1. Select the **Assign** button to finish the assignment of users and groups to the app.
 
 Confirm that the users and groups you added appear in the **Users and groups** list.
+
+After following the steps in the IT token you should see the Admin role assigned.
+
+![id_token_screenshot](media/msal_node_web_app_id_token.png)
