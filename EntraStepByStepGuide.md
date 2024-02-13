@@ -22,7 +22,21 @@ To specify your app type to your app registration, follow these steps:
 1. For the **Redirect URIs** enter `http://localhost:3000/auth/redirect`.
 1. Select **Configure** to save your changes.
 
-### Add app client secret
+### Add credentials
+
+Credentials are used by [confidential client applications](https://learn.microsoft.com/en-us/entra/identity-platform/msal-client-applications) that access a web API. Credentials allow your application to authenticate as itself, requiring no interaction from a user at runtime.
+
+1. In the Microsoft Entra admin center, in **App registrations**, select your application.
+1. Select **Certificates & secrets** > **Client secrets** > **New client secret**.
+1. Add a description for your client secret.
+1. Select an expiration for the secret or specify a custom lifetime.
+    - Client secret lifetime is limited to two years (24 months) or less. You can't specify a custom lifetime longer than 24 months.
+    - Microsoft recommends that you set an expiration value of less than 12 months.
+1. Select **Add**.
+1. _Record the secret's value_ for use in your client application code. This secret value is _never displayed again_ after you leave this page.
+
+
+### Add permissions to app
 
 Since this app signs-in users, add delegated permissions:
 1. From the **App registrations** page, select the application that you created (such as *ciam-client-app*) to open its **Overview** page.
@@ -72,3 +86,36 @@ Although many applications can be associated with your user flow, a single appli
 1. Select the application from the list such as *ciam-client-app* or use the search box to find the application, and then select it.
 
 1. Choose **Select**. 
+
+### Create App Roles
+
+In this step we are going to define the Admin app role, that once assigned to a user will give them elevated access to mange resources that the don't own.
+In the Microsoft Entra admin center's user interface:
+
+1. Browse to **Identity** > **Applications** > **App registrations** and then select the application select the application that you created (such as *ciam-client-app*).
+
+1. Under manage select **App roles**, and then select **Create app role**.
+
+2. In the **Create app role** pane, enter the settings for the role. The table following the image describes each setting and their parameters.
+
+  | Field                                    | Description                                                                                                                                                                                                                                                                                                       | Example                       |
+   | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+   | **Display name**                         | Display name for the app role that appears in the admin consent and app assignment experiences. This value may contain spaces.                                                                                                                                                                                    | `Administrator`               |
+   | **Allowed member types**                 | Specifies whether this app role can be assigned to users, applications, or both.<br/><br/>When available to `applications`, app roles appear as application permissions in an app registration's **Manage** section > **API permissions > Add a permission > My APIs > Choose an API > Application permissions**. | `Users/Groups`                |
+   | **Value**                                | Specifies the value of the roles claim that the application should expect in the token. The value should exactly match the string referenced in the application's code. The value can't contain spaces.                                                                                                          | `Posts.Admin`               |
+   | **Description**                          | A more detailed description of the app role displayed during admin app assignment and consent experiences.                                                                                                                                                                                                        | `Admins can manage all posts.` |
+   | **Do you want to enable this app role?** | Specifies whether the app role is enabled. To delete an app role, deselect this checkbox and apply the change before attempting the delete operation. This setting controls the app role's usage and availability while being able to temporarily or permanently disabling it without removing it entirely.                                                                                                                                                            | _Checked_                     |
+
+1. Select **Apply** to save your changes.
+
+### Assign application owner 
+
+If you have not already done so, you'll need to assign yourself as the application owner.
+
+1. In your app registration, under **Manage**, select **Owners**, and **Add owners**.
+1. In the new window, find and select the owner(s) that you want to assign to the application. Selected owners appear in the right panel. Once done, confirm with **Select**. The app owner(s) will now appear in the owner's list.
+
+>[!NOTE]
+>
+> Ensure that both the API application and the application you want to add permissions to both have an owner, otherwise the API will not be listed when requesting API permissions.
+

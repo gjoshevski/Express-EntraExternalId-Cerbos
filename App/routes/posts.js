@@ -31,7 +31,7 @@ function isAuthorized(action) {
         // Get principal from session
         const principal = {
             id: req.session.account.idTokenClaims.oid,
-            roles: req.session.account.idTokenClaims.roles,
+            roles: req.session.account.idTokenClaims.roles ? req.session.account.idTokenClaims.roles : ['Posts.User'], // Default role is Posts.User
         };
 
         // Get the resource
@@ -98,7 +98,7 @@ router.post(
             title,
             content,
             authorId: req.session.account.idTokenClaims.oid,
-            organizationId: req.session.account.idTokenClaims.groups[0],
+            organizationId: req.session.account.idTokenClaims.groups ? req.session.account.idTokenClaims.groups[0] : "0", //TODO: Multi-tenant support - 0 default
         };
 
         await prisma.post.create({

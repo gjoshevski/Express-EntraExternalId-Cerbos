@@ -25,7 +25,7 @@ Before getting started, make sure you have the following prerequisites:
 
 ## Microsoft Entra Configuration
 
-To enable your application to sign in users with Microsoft Entra, Microsoft Entra ID for customers must be made aware of the application you create. The app registration establishes a trust relationship between the app and Microsoft Entra. When you register an application, External ID generates a unique identifier known as an Application (client) ID, a value used to identify your app when creating authentication requests.
+To enable your application to sign in users with Microsoft Entra, you must register your application. Creating [app registration](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app) establishes a trust relationship between the app and Microsoft Entra. When you register an application, External ID generates a unique identifier known as an Application (client) ID, a value used to identify your app when creating authentication requests.
 
 In this sample we offer two options to create this configuration, by using PowerShell script or following the step by step guid using the Entra portal. 
 
@@ -55,7 +55,7 @@ cd Cerbos
 ./start.sh
 ```
 
-## Cofigure the Express APP
+## Configure the Express APP
 
 ### Install project dependencies
 
@@ -72,15 +72,16 @@ cd Cerbos
     ```
 ### Configure the sample web app
 
-1. In your code editor, open *App\authConfig.js* file.
+1. In your code editor, open the *.env* file in the *App* directory.
 
-1. Find the placeholder:
+1. Change the values for the following variables:
 
-    1. `Enter_the_Application_Id_Here` and replace it with the Application (client) ID of the app you registered earlier.
+    1. `TENANT_SUBDOMAIN` - replace it with the Directory (tenant) subdomain. For example, if your tenant primary domain is `contoso.onmicrosoft.com`, use `contoso`. If you don't have your tenant name, learn how to [read your tenant details](how-to-create-customer-tenant-portal.md#get-the-customer-tenant-details).
 
-    1. `Enter_the_Tenant_Subdomain_Here` and replace it with the Directory (tenant) subdomain. For example, if your tenant primary domain is `contoso.onmicrosoft.com`, use `contoso`. If you don't have your tenant name, learn how to [read your tenant details](how-to-create-customer-tenant-portal.md#get-the-customer-tenant-details).
-
-    1. `Enter_the_Client_Secret_Here` and replace it with the app secret value you copied earlier.
+    1. `CLIENT_ID` - replace it with the Application (client) ID of the app you registered earlier.
+   
+    1. `CLIENT_SECRET` and replace it with the app secret value you copied earlier.
+ 
 
 ### Run and test the sample web app
 
@@ -105,9 +106,19 @@ To test the sample Node.js web app, follow these steps:
 
 ## Assign Admin role
 
-Navigate to Enerpirse apps 
-Find the user
-Edit Assignment
+1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com) as at least a [Cloud Application Administrator](~/identity/role-based-access-control/permissions-reference.md#cloud-application-administrator). 
+1. Browse to **Identity** > **Applications** > **Enterprise applications**.
+1. Select **All applications** to view a list of all your applications, and select the application that you created (such as *ciam-client-app*). If your application doesn't appear in the list, use the filters at the top of the **All applications** list to restrict the list, or scroll down the list to locate your application.
+1. Select the application in which you want to assign users or security group to roles.
+1. Under **Manage**, select **Users and groups**.
+1. Select **Add user** to open the **Add Assignment** pane.
+1. Select the **Users and groups** selector from the **Add Assignment** pane. A list of users and security groups is displayed. You can search for a certain user or group and select multiple users and groups that appear in the list.
+1. Once you've selected users and groups, select the **Select** button to proceed.
+1. Select **Select a role** in the **Add assignment** pane. All the roles that you've defined for the application are displayed. Choose **Admin**. 
+1. Choose a role and select the **Select** button.
+1. Select the **Assign** button to finish the assignment of users and groups to the app.
+
+Confirm that the users and groups you added appear in the **Users and groups** list.
 
 ## How it works
 
